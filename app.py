@@ -29,7 +29,7 @@ if st.button("Predict"):
     st.write("⏳ Training SARIMA model...")
 
 
-    model = SARIMAX(df["Close"], order=(1,1,1), seasonal_order=(1,1,1,12))
+    model = SARIMAX(df["Close"], order=(1,1,1), seasonal_order=(1,1,1,252))
     result = model.fit(disp=False)
 
 
@@ -47,6 +47,7 @@ if st.button("Predict"):
     ax.plot(predicted, label="Forecast", linestyle='--')
     ax.fill_between(conf.index, conf.iloc[:,0], conf.iloc[:,1], alpha=0.2)
     ax.legend()
+
 
 
     st.pyplot(fig)
